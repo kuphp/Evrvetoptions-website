@@ -100,6 +100,8 @@ export const PM_TAGLINE = "Advanced Veterinary Machines & Equipment";
 export const PM_DIVISION_NOTE =
   "Pet Multilines is a Business Division of EVR Vet Options Corporation.";
 export const PM_BASE = "/petmultilines";
+export const PM_FACEBOOK =
+  "https://www.facebook.com/profile.php?id=100094162373169";
 
 export const PM_NAV_LINKS = [
   { label: "Home", href: "/petmultilines" },

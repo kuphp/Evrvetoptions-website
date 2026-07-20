@@ -8,6 +8,7 @@ import { ArrowLeft, ArrowUpRight, Menu, PhoneCall } from "lucide-react";
 import {
   COMPANY_NAME,
   PM_DIVISION_NOTE,
+  PM_FACEBOOK,
   PM_NAV_LINKS,
 } from "@/lib/constants";
 import type { SiteContent } from "@/lib/types";
@@ -21,6 +22,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/site/theme-toggle";
+import { FacebookIcon } from "@/components/site/social-icons";
 
 export function PMLogo({
   className,
@@ -236,7 +238,16 @@ export function PMFooter({ content }: { content: SiteContent }) {
               surgical, and diagnostic systems with installation, training, and
               dependable after-sales service nationwide.
             </p>
-            <p className="mt-4 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-xs leading-relaxed text-white/70">
+            <a
+              href={PM_FACEBOOK}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Pet Multilines on Facebook"
+              className="mt-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/70 transition-all hover:border-transparent hover:bg-gradient-brand hover:text-white"
+            >
+              <FacebookIcon className="h-4 w-4" />
+            </a>
+            <p className="mt-5 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-xs leading-relaxed text-white/70">
               {PM_DIVISION_NOTE}
             </p>
           </div>

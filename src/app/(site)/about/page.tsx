@@ -76,7 +76,7 @@ export default async function AboutPage() {
                   Our History
                 </h3>
               </div>
-              <p className="mt-4 leading-relaxed text-muted-foreground">
+              <p className="mt-4 whitespace-pre-line leading-relaxed text-muted-foreground">
                 {company.history}
               </p>
             </div>
@@ -159,9 +159,9 @@ export default async function AboutPage() {
       <section className="section-pad border-y bg-muted/40">
         <div className="container-page">
           <SectionHeading
-            eyebrow="What We Stand For"
-            title="Our Core Values"
-            description="Six principles that guide every decision, delivery, and relationship."
+            eyebrow="Our Mission in Action"
+            title="Our Commitments"
+            description="How we live out our mission every day — to our people, our customers, our partners, and our community."
           />
           <RevealStagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {company.core_values.map((value, i) => {

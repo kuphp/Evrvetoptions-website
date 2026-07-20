@@ -77,7 +77,9 @@ export function OverviewSection({ company }: { company: CompanyInfo }) {
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-brand text-white">
                   <Gem className="h-6 w-6" />
                 </span>
-                <h3 className="font-extrabold tracking-tight">Core Values</h3>
+                <h3 className="font-extrabold tracking-tight">
+                  Our Commitments
+                </h3>
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
                 {company.core_values.map((value) => (

@@ -13,17 +13,15 @@ insert into public.site_content (key, value) values
   "short_name": "EVR Vet Options",
   "tagline": "Advancing Animal Health Across the Philippines",
   "intro": "EVR Vet Options Corporation is a Filipino-owned veterinary solutions company serving farms, clinics, and pet businesses nationwide. We bring together trusted animal health brands, science-backed products, and world-class equipment under one roof — backed by a team that genuinely cares about your animals and your business.",
-  "profile": "EVR Vet Options Corporation is a full-line distributor of veterinary products and solutions headquartered in Metro Manila, Philippines. Our portfolio spans three divisions — Livestock Solutions, Pet Consumables, and Machines & Equipment — allowing us to serve commercial farms, veterinary clinics, animal hospitals, pet shops, and agri-retailers with a single, reliable supply partner. From biologics and nutrition to digital imaging and laboratory systems, every product we carry is selected for proven quality, regulatory compliance, and real-world value.",
-  "history": "EVR Vet Options was founded by Elizardo V. Reyes, a veteran of the Philippine animal health industry, with a simple conviction: Filipino farms and clinics deserve world-class products with honest service. What began as a small distribution operation has grown into a nationwide network serving hundreds of farms, clinics, and retail partners across Luzon, Visayas, and Mindanao. Along the way, we expanded from livestock health into companion animal care and veterinary equipment — but our founding promise has never changed: Excellence, Value, and Reliability in everything we deliver.",
-  "mission": "To empower Filipino farmers, veterinarians, and pet care professionals with world-class animal health products, equipment, and support — delivered with integrity, expertise, and genuine care.",
-  "vision": "To be the Philippines' most trusted veterinary solutions company — the partner of choice for animal health, from backyard farms to nationwide enterprises.",
+  "profile": "EVR Vet Options Corporation is a full-line distributor of veterinary products and solutions headquartered in Mabalacat, Pampanga, Philippines, and part of the EVR Group of Companies. Our portfolio spans Livestock Solutions and Pet Consumables — with veterinary machines & equipment served by our dedicated division, Pet Multilines — allowing us to serve commercial farms, veterinary clinics, animal hospitals, pet shops, and agri-retailers with a single, reliable supply partner. From biologics and nutrition to digital imaging and laboratory systems, every product we carry is selected for proven quality, regulatory compliance, and real-world value.",
+  "history": "Founded in 1996 by Dr. Elizardo V. Reyes, the EVR Group of Companies began with the establishment of EVCOR Marketing, driven by a vision to provide quality animal healthcare products and professional veterinary solutions across the Philippines. The company steadily expanded with the opening of the first Angeles Pet Care Center (APCC) in 1997, followed by additional branches in Tarlac (1998) and San Fernando (2003). In 2009, EVR Vet Options Corporation was officially incorporated, strengthening its role as a trusted distributor of animal health products, veterinary medicines, biologics, feeds, and equipment.\n\nAs the organization continued to grow, it diversified into several business sectors — including Angeles Pet Care Center (APCC), Animal Wellness Hospital, Tinang Concepcion Farms, and Pet Multilines — while expanding its offices, warehouses, clinics, and distribution network across the country. By 2021, EVR had established operations in key locations throughout Luzon, Visayas, and Mindanao.\n\nToday, the EVR Group of Companies continues to build on the vision of Dr. Elizardo V. Reyes, serving veterinarians, livestock producers, pet owners, dealers, and business partners through its nationwide network. With over 25 years of excellence, the company remains committed to delivering innovative products, reliable service, and sustainable growth in the Philippine animal health industry.",
+  "mission": "To deliver quality animal health products and services promptly and accurately — investing in our people through continuous development, honoring our commitments to business partners, and empowering the customers and communities we serve across the Philippines.",
+  "vision": "To be the Leading, Reliable, and Most Trusted National Distributor of Quality and Innovative Animal Health Care Products.",
   "core_values": [
-    { "title": "Excellence", "description": "We hold every product, process, and person to the highest standard — because animal health leaves no room for shortcuts." },
-    { "title": "Value", "description": "We deliver honest pricing and real returns for our customers, helping farms and clinics grow sustainably." },
-    { "title": "Reliability", "description": "We show up, on time, every time — with stock you can count on and support that never disappears after the sale." },
-    { "title": "Integrity", "description": "We do business the right way: transparent, compliant, and accountable to our customers and partners." },
-    { "title": "Compassion", "description": "Animal welfare is at the heart of our work. Healthier animals mean better lives — for them and for the people who care for them." },
-    { "title": "Partnership", "description": "We grow together with our customers, principals, and communities — building relationships that last decades, not transactions." }
+    { "title": "Our Employees", "description": "We strike a work-life balance for our employees through continuous professional development, training and seminars, and competitive compensation and benefits." },
+    { "title": "Our Customers", "description": "We commit to deliver quality services and products promptly and accurately." },
+    { "title": "Our Business Partners", "description": "We are committed to fulfill our duties to our business partners by complying with mutually agreed standards, terms, and conditions." },
+    { "title": "Our Community", "description": "We participate in our community by providing technical know-how to help customers improve their productivity and efficiency, and to promote the safety of farm personnel and the surrounding community." }
   ],
   "stats": [
     { "value": "3", "label": "Business Divisions" },
@@ -44,24 +42,20 @@ $json$::jsonb),
 $json$::jsonb),
 ('contact', $json$
 {
-  "address": "EVR Corporate Center, 88 Quezon Avenue, Quezon City, Metro Manila 1103, Philippines",
+  "address": "Vivape Center, Lot 2 Block 6, Brgy. Camachiles, MacArthur Highway, Mabalacat City, Pampanga, Philippines",
   "phone": "+63 (2) 8123 4567",
   "phone_alt": "+63 917 123 4567",
   "email": "info@evrvetoptions.com",
   "email_sales": "sales@evrvetoptions.com",
-  "map_embed_url": "https://www.google.com/maps?q=Quezon+Avenue,+Quezon+City,+Metro+Manila,+Philippines&output=embed",
+  "map_embed_url": "https://www.google.com/maps?q=Vivape+Center,+Camachiles,+MacArthur+Highway,+Mabalacat+City,+Pampanga&output=embed",
   "business_hours": [
-    { "days": "Monday – Friday", "hours": "8:00 AM – 5:00 PM" },
-    { "days": "Saturday", "hours": "8:00 AM – 12:00 NN" },
+    { "days": "Monday – Saturday", "hours": "8:00 AM – 5:00 PM" },
     { "days": "Sunday & Holidays", "hours": "Closed" }
   ],
   "socials": {
-    "facebook": "https://www.facebook.com/evrvetoptions",
-    "instagram": "https://www.instagram.com/evrvetoptions",
-    "linkedin": "https://www.linkedin.com/company/evrvetoptions",
-    "youtube": "https://www.youtube.com/@evrvetoptions",
-    "messenger": "https://m.me/evrvetoptions",
-    "whatsapp": "https://wa.me/639171234567"
+    "facebook": "https://www.facebook.com/officialevrvetoptions",
+    "linkedin": "https://www.linkedin.com/company/evr-vet-options-corporation/",
+    "messenger": "https://m.me/officialevrvetoptions"
   }
 }
 $json$::jsonb),
