@@ -44,7 +44,7 @@ export default async function ProductsPage() {
         {/* Division quick picker — visible immediately, no clicks needed */}
         <Reveal
           delay={0.12}
-          className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3"
+          className="mx-auto mt-8 grid max-w-3xl gap-3 sm:grid-cols-3"
         >
           {PRODUCT_CATEGORIES.map((category) => {
             const Icon = CATEGORY_ICONS[category.slug];
