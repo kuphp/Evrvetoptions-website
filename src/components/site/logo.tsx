@@ -49,23 +49,31 @@ export function Logo({
   return (
     <Link
       href="/"
-      className={cn("group inline-flex items-center", className)}
+      className={cn("group flex items-center gap-2.5", className)}
       aria-label="EVR Vet Options Corporation — Home"
     >
       <span
         className={cn(
           "tap-scale inline-flex items-center transition-transform duration-300 group-hover:scale-[1.03]",
-          chip && "rounded-xl bg-white px-3 py-1.5 shadow-sm ring-1 ring-black/5"
+          chip && "rounded-xl bg-white px-2 py-1 shadow-sm ring-1 ring-black/5"
         )}
       >
         <Image
-          src="/images/evr-logo.png"
+          src="/images/evr-icon.png"
           alt="EVR Vet Options Corporation"
-          width={210}
-          height={171}
+          width={174}
+          height={140}
           priority
-          className={cn("w-auto", compact ? "h-10" : "h-12 md:h-16")}
+          className={cn("w-auto", compact ? "h-9" : "h-11 md:h-14")}
         />
+      </span>
+      <span className="flex flex-col leading-none">
+        <span className="text-foreground text-base font-extrabold tracking-tight md:text-lg">
+          EVR <span className="text-gradient">Vet Options</span>
+        </span>
+        <span className="text-muted-foreground mt-1 text-[0.58rem] font-semibold uppercase tracking-[0.16em]">
+          Corporation
+        </span>
       </span>
     </Link>
   );

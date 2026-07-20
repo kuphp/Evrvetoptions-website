@@ -101,10 +101,10 @@ export function PMHeader() {
             Back to EVR Vet Options
             <span className="hidden items-center rounded-md bg-white px-1.5 py-0.5 sm:inline-flex">
               <Image
-                src="/images/evr-logo.png"
+                src="/images/evr-icon.png"
                 alt=""
-                width={40}
-                height={32}
+                width={30}
+                height={24}
                 className="h-5 w-auto"
               />
             </span>
