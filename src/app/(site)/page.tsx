@@ -15,7 +15,6 @@ import {
 import { getPromoStatus } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { HeroCarousel } from "@/components/site/home/hero-carousel";
-import { ScrollPets } from "@/components/site/home/scroll-pets";
 import { CategoryCards } from "@/components/site/home/category-cards";
 import { OverviewSection } from "@/components/site/home/overview-section";
 import { CeoSection } from "@/components/site/home/ceo-section";
@@ -68,7 +67,6 @@ export default async function HomePage() {
 
   return (
     <>
-      <ScrollPets />
       <HeroCarousel slides={slides} />
 
       {/* Division + trusted partners strip */}
