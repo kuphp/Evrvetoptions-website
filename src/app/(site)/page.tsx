@@ -10,7 +10,6 @@ import {
   getProducts,
   getPromotions,
   getSiteContent,
-  getTestimonials,
 } from "@/lib/data";
 import { getPromoStatus } from "@/lib/format";
 import { Button } from "@/components/ui/button";
@@ -23,7 +22,6 @@ import { ProductCard } from "@/components/site/product-card";
 import { PromoCard } from "@/components/site/promo-card";
 import { EventCard } from "@/components/site/event-card";
 import { PartnersMarquee } from "@/components/site/partners-marquee";
-import { TestimonialsGrid } from "@/components/site/testimonials-section";
 import { CertificatesGrid } from "@/components/site/certificates-section";
 import { FaqAccordion } from "@/components/site/faq-section";
 import { SectionHeading } from "@/components/site/section-heading";
@@ -39,7 +37,6 @@ export default async function HomePage() {
     promotions,
     events,
     partners,
-    testimonials,
     certificates,
     faqs,
   ] = await Promise.all([
@@ -50,7 +47,6 @@ export default async function HomePage() {
     getPromotions(),
     getEvents(),
     getPartners(),
-    getTestimonials(),
     getCertificates(),
     getFaqs(),
   ]);
@@ -194,20 +190,6 @@ export default async function HomePage() {
           </Button>
         </Reveal>
       </section>
-
-      {/* Testimonials */}
-      {testimonials.length > 0 && (
-        <section className="section-pad border-y bg-muted/40">
-          <div className="container-page">
-            <SectionHeading
-              eyebrow="What Clients Say"
-              title="Trusted by Farms, Clinics & Pet Businesses"
-              description="Real feedback from the veterinarians, farm owners, and entrepreneurs we serve every day."
-            />
-            <TestimonialsGrid testimonials={testimonials} />
-          </div>
-        </section>
-      )}
 
       {/* Certificates & awards */}
       {certificates.length > 0 && (
