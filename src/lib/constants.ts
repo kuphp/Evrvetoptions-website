@@ -17,9 +17,15 @@ export const NAV_LINKS = [
       { label: "Pet Consumables", href: "/products/pet-consumables" },
     ],
   },
-  { label: "Events", href: "/events" },
-  { label: "Promotions", href: "/promotions" },
   { label: "Partners", href: "/partners" },
+  {
+    label: "What's New",
+    href: "/whats-new",
+    children: [
+      { label: "Events", href: "/events" },
+      { label: "Promotions", href: "/promotions" },
+    ],
+  },
   { label: "Pet Multilines", href: "/petmultilines" },
   { label: "Contact Us", href: "/contact" },
 ] as const;

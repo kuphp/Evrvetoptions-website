@@ -3,7 +3,14 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, PhoneCall } from "lucide-react";
+import {
+  BadgePercent,
+  CalendarDays,
+  ChevronDown,
+  Menu,
+  PhoneCall,
+  type LucideIcon,
+} from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import { CATEGORY_ICONS } from "@/lib/category-icons";
 import type { ProductCategory } from "@/lib/types";
@@ -19,7 +26,13 @@ import {
 import { Logo } from "@/components/site/logo";
 import { ThemeToggle } from "@/components/site/theme-toggle";
 
-function categoryIconFor(href: string) {
+const EXTRA_ICONS: Record<string, LucideIcon> = {
+  "/events": CalendarDays,
+  "/promotions": BadgePercent,
+};
+
+function childIconFor(href: string): LucideIcon | null {
+  if (EXTRA_ICONS[href]) return EXTRA_ICONS[href];
   const slug = href.split("/").pop() as ProductCategory;
   return CATEGORY_ICONS[slug] ?? null;
 }
@@ -77,7 +90,7 @@ export function SiteHeader() {
                 <div className="invisible absolute left-0 top-full translate-y-1 pt-2 opacity-0 transition-all duration-150 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   <div className="w-72 rounded-2xl border bg-popover p-2 shadow-soft">
                     {link.children.map((child) => {
-                      const Icon = categoryIconFor(child.href);
+                      const Icon = childIconFor(child.href);
                       return (
                         <Link
                           key={child.href}
@@ -103,7 +116,7 @@ export function SiteHeader() {
                       href={link.href}
                       className="tap-scale block rounded-xl px-3 py-2 text-sm font-bold text-primary transition-colors hover:bg-accent"
                     >
-                      View All Products →
+                      View {link.label} →
                     </Link>
                   </div>
                 </div>
@@ -183,7 +196,7 @@ export function SiteHeader() {
                     {"children" in link && link.children && (
                       <div className="ml-3 border-l pl-3">
                         {link.children.map((child) => {
-                          const Icon = categoryIconFor(child.href);
+                          const Icon = childIconFor(child.href);
                           return (
                             <Link
                               key={child.href}
