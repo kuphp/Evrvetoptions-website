@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import {
   ArrowRight,
   ChevronLeft,
@@ -32,10 +32,30 @@ const SLIDE_CHIPS = [
   { icon: Wrench, label: "Full After-Sales Support" },
 ];
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+/** Parent staggers its children in when a slide becomes active. */
+const copyContainer: Variants = {
+  active: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
+  inactive: { transition: { staggerChildren: 0.03, staggerDirection: -1 } },
+};
+
+/** Each line slides up + fades in. */
+const copyItem: Variants = {
+  active: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
+  inactive: { opacity: 0, y: 28, transition: { duration: 0.3, ease: EASE } },
+};
+
+const panelItem: Variants = {
+  active: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+  inactive: { opacity: 0, scale: 0.92, y: 20, transition: { duration: 0.35 } },
+};
+
 export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 28 }, [
-    Autoplay({ delay: 6500, stopOnInteraction: false, stopOnMouseEnter: true }),
-  ]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, duration: 40, align: "center" },
+    [Autoplay({ delay: 6500, stopOnInteraction: false, stopOnMouseEnter: true })]
+  );
   const [selected, setSelected] = useState(0);
 
   useEffect(() => {
@@ -81,42 +101,60 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
                 className="relative min-w-0 flex-[0_0_100%]"
                 aria-hidden={!isSelected}
               >
-                {/* Full-bleed slide image with a legibility gradient on the left */}
+                {/* Full-bleed slide image with a slow Ken Burns zoom + legibility gradient */}
                 {slide.image_url && (
                   <>
-                    <Image
-                      src={slide.image_url}
-                      alt=""
-                      fill
-                      priority={index === 0}
-                      sizes="100vw"
-                      className="object-cover object-[72%_center]"
-                    />
+                    <motion.div
+                      className="absolute inset-0"
+                      animate={
+                        isSelected
+                          ? { scale: 1.08 }
+                          : { scale: 1 }
+                      }
+                      transition={{ duration: 7.5, ease: "easeOut" }}
+                    >
+                      <Image
+                        src={slide.image_url}
+                        alt=""
+                        fill
+                        priority={index === 0}
+                        sizes="100vw"
+                        className="object-cover object-[72%_center]"
+                      />
+                    </motion.div>
                     <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/5" />
                   </>
                 )}
 
                 <div className="container-page relative grid min-h-[28rem] items-center gap-10 py-10 md:min-h-[34rem] md:py-20 lg:min-h-[36rem] lg:grid-cols-[1.15fr_1fr] lg:gap-14">
-                  {/* Copy */}
+                  {/* Copy — staggered reveal */}
                   <motion.div
-                    animate={
-                      isSelected
-                        ? { opacity: 1, y: 0 }
-                        : { opacity: 0.25, y: 14 }
-                    }
-                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                    variants={copyContainer}
+                    initial={false}
+                    animate={isSelected ? "active" : "inactive"}
                   >
-                    <span className="inline-flex items-center gap-2 rounded-full border bg-card/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground shadow-sm backdrop-blur">
+                    <motion.span
+                      variants={copyItem}
+                      className="inline-flex items-center gap-2 rounded-full border bg-card/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground shadow-sm backdrop-blur"
+                    >
                       <span className="h-2 w-2 rounded-full bg-gradient-brand" />
                       EVR Vet Options Corporation
-                    </span>
-                    <Heading className="mt-5 text-[2rem] font-extrabold leading-[1.12] tracking-tight text-balance sm:text-5xl sm:leading-[1.08] md:mt-6 xl:text-6xl">
-                      {splitTitle(slide.title)}
-                    </Heading>
-                    <p className="mt-4 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground text-pretty sm:text-lg md:mt-6">
+                    </motion.span>
+                    <motion.div variants={copyItem}>
+                      <Heading className="mt-5 text-[2rem] font-extrabold leading-[1.12] tracking-tight text-balance sm:text-5xl sm:leading-[1.08] md:mt-6 xl:text-6xl">
+                        {splitTitle(slide.title)}
+                      </Heading>
+                    </motion.div>
+                    <motion.p
+                      variants={copyItem}
+                      className="mt-4 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground text-pretty sm:text-lg md:mt-6"
+                    >
                       {slide.subtitle}
-                    </p>
-                    <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-3.5 md:mt-9">
+                    </motion.p>
+                    <motion.div
+                      variants={copyItem}
+                      className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-3.5 md:mt-9"
+                    >
                       <Button
                         render={<Link href={slide.cta_href} />}
                         size="lg"
@@ -135,45 +173,66 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
                           {slide.cta_secondary_label}
                         </Button>
                       )}
-                    </div>
+                    </motion.div>
                   </motion.div>
 
                   {/* Visual panel — only for slides without a photo */}
                   {!slide.image_url ? (
                     <motion.div
                       className="relative hidden lg:block"
-                      animate={
-                        isSelected
-                          ? { opacity: 1, scale: 1 }
-                          : { opacity: 0.2, scale: 0.96 }
-                      }
-                      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                      variants={copyContainer}
+                      initial={false}
+                      animate={isSelected ? "active" : "inactive"}
                     >
                       <div className="relative mx-auto aspect-[5/4] w-full max-w-lg">
-                        <div className="absolute inset-0 rotate-2 rounded-[2rem] bg-gradient-brand opacity-15 blur-sm" />
-                        <div className="glass absolute inset-0 flex items-center justify-center rounded-[2rem] shadow-soft">
-                          <div className="flex h-40 w-40 items-center justify-center rounded-[2.5rem] bg-gradient-brand text-white shadow-soft">
+                        <motion.div
+                          variants={panelItem}
+                          className="absolute inset-0 rotate-2 rounded-[2rem] bg-gradient-brand opacity-15 blur-sm"
+                        />
+                        <motion.div
+                          variants={panelItem}
+                          className="glass absolute inset-0 flex items-center justify-center rounded-[2rem] shadow-soft"
+                        >
+                          <motion.div
+                            className="flex h-40 w-40 items-center justify-center rounded-[2.5rem] bg-gradient-brand text-white shadow-soft"
+                            animate={
+                              isSelected
+                                ? { scale: [1, 1.06, 1] }
+                                : { scale: 1 }
+                            }
+                            transition={{
+                              duration: 4,
+                              ease: "easeInOut",
+                              repeat: isSelected ? Infinity : 0,
+                            }}
+                          >
                             <Icon className="h-20 w-20" strokeWidth={1.4} />
-                          </div>
+                          </motion.div>
                           <div className="absolute left-8 top-8 h-3 w-3 rounded-full bg-brand-green/50" />
                           <div className="absolute bottom-10 right-10 h-2.5 w-2.5 rounded-full bg-brand-blue/50" />
-                        </div>
+                        </motion.div>
 
                         {/* Floating chips */}
-                        <div className="glass absolute -left-6 bottom-10 flex animate-float items-center gap-2.5 rounded-2xl px-4 py-3 shadow-soft">
+                        <motion.div
+                          variants={panelItem}
+                          className="glass absolute -left-6 bottom-10 flex animate-float items-center gap-2.5 rounded-2xl px-4 py-3 shadow-soft"
+                        >
                           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-brand text-white">
                             <ChipIcon className="h-4.5 w-4.5" />
                           </span>
                           <span className="text-sm font-bold">{chip.label}</span>
-                        </div>
-                        <div className="glass absolute -right-4 top-8 animate-float-delayed rounded-2xl px-4 py-3 shadow-soft">
+                        </motion.div>
+                        <motion.div
+                          variants={panelItem}
+                          className="glass absolute -right-4 top-8 animate-float-delayed rounded-2xl px-4 py-3 shadow-soft"
+                        >
                           <p className="text-lg font-extrabold text-gradient">
                             EVR
                           </p>
                           <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-muted-foreground">
                             Est. Quality
                           </p>
-                        </div>
+                        </motion.div>
                       </div>
                     </motion.div>
                   ) : (
