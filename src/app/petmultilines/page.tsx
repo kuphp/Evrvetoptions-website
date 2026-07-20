@@ -34,13 +34,6 @@ const LINE_ICONS = [
   Slice, // Instruments
 ];
 
-const PM_STATS = [
-  { value: "8", label: "Equipment Categories" },
-  { value: "500+", label: "Units Installed Nationwide" },
-  { value: "1–2 yrs", label: "Standard Warranty" },
-  { value: "24/7", label: "Technical Support Hotline" },
-];
-
 export default async function PetMultilinesHome() {
   const [products, brandsAll] = await Promise.all([
     getProducts({ category: "equipment" }),
@@ -100,26 +93,6 @@ export default async function PetMultilinesHome() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="relative border-b bg-card/60">
-        <div className="container-page">
-          <RevealStagger className="grid grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-border">
-            {PM_STATS.map((stat) => (
-              <RevealItem key={stat.label}>
-                <div className="flex flex-col items-center gap-1.5 px-4 py-8 text-center">
-                  <span className="text-3xl font-extrabold tracking-tight text-gradient sm:text-4xl">
-                    {stat.value}
-                  </span>
-                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                    {stat.label}
-                  </span>
-                </div>
-              </RevealItem>
-            ))}
-          </RevealStagger>
-        </div>
-      </section>
-
       {/* Equipment lines */}
       <section className="section-pad">
         <div className="container-page">
@@ -135,13 +108,18 @@ export default async function PetMultilinesHome() {
                 <RevealItem key={line}>
                   <Link
                     href="/petmultilines/products"
-                    className="card-hover group flex h-full flex-col gap-4 rounded-2xl border bg-card p-5 sm:p-6"
+                    className="card-hover group relative flex h-full flex-col items-center gap-4 overflow-hidden rounded-2xl border bg-card p-6 text-center sm:gap-5 sm:p-8"
                   >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-white sm:h-12 sm:w-12">
-                      <Icon className="h-5.5 w-5.5" />
+                    {/* soft brand glow on hover */}
+                    <div className="pointer-events-none absolute -top-12 left-1/2 h-28 w-28 -translate-x-1/2 rounded-full bg-gradient-brand opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-20" />
+                    <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-brand text-white shadow-soft transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3 sm:h-16 sm:w-16">
+                      <Icon className="h-7 w-7 sm:h-8 sm:w-8" strokeWidth={1.6} />
                     </span>
-                    <span className="text-sm font-extrabold leading-snug tracking-tight transition-colors group-hover:text-primary sm:text-base">
+                    <span className="relative text-sm font-extrabold leading-snug tracking-tight transition-colors group-hover:text-primary sm:text-[0.95rem]">
                       {line}
+                    </span>
+                    <span className="relative mt-auto inline-flex items-center gap-1 text-[0.7rem] font-bold uppercase tracking-wider text-muted-foreground opacity-0 transition-all duration-300 group-hover:text-primary group-hover:opacity-100">
+                      View <ArrowRight className="h-3 w-3" />
                     </span>
                   </Link>
                 </RevealItem>
