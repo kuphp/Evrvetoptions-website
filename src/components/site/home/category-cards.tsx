@@ -94,7 +94,7 @@ export function CategoryCards() {
                 </div>
                 <span className="absolute left-4 top-4 inline-flex items-center rounded-xl bg-white px-2 py-1 shadow-soft">
                   <Image
-                    src="/images/pm-logo.jpg"
+                    src="/images/pm-logo.png"
                     alt="Pet Multilines"
                     width={72}
                     height={72}

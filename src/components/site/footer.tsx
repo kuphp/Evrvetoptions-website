@@ -50,7 +50,7 @@ export function SiteFooter({
         <div className="grid grid-cols-2 gap-x-6 gap-y-9 py-10 md:py-14 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr] lg:gap-12">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
-            <Logo className="[&_span]:text-white [&_.text-muted-foreground]:text-white/50" />
+            <Logo chip />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65 md:mt-5">
               {company.intro.length > 180
                 ? `${company.intro.slice(0, 177).trimEnd()}…`

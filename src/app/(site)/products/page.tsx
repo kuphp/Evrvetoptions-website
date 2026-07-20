@@ -72,7 +72,7 @@ export default async function ProductsPage() {
           >
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white ring-1 ring-black/5">
               <Image
-                src="/images/pm-logo.jpg"
+                src="/images/pm-logo.png"
                 alt="Pet Multilines"
                 width={44}
                 height={44}

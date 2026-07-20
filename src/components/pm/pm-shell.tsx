@@ -22,21 +22,32 @@ import {
 } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/site/theme-toggle";
 
-export function PMLogo({ className }: { className?: string }) {
+export function PMLogo({
+  className,
+  chip = false,
+}: {
+  className?: string;
+  chip?: boolean;
+}) {
   return (
     <Link
       href="/petmultilines"
       className={cn("group flex items-center gap-2.5", className)}
       aria-label="Pet Multilines — Home"
     >
-      <span className="tap-scale inline-flex items-center rounded-xl bg-white px-2 py-1 shadow-sm ring-1 ring-black/5 transition-transform duration-300 group-hover:scale-[1.03]">
+      <span
+        className={cn(
+          "tap-scale inline-flex items-center transition-transform duration-300 group-hover:scale-[1.03]",
+          chip && "rounded-xl bg-white px-2 py-1 shadow-sm ring-1 ring-black/5"
+        )}
+      >
         <Image
-          src="/images/pm-logo.jpg"
+          src="/images/pm-logo.png"
           alt="Pet Multilines"
-          width={96}
-          height={96}
+          width={112}
+          height={112}
           priority
-          className="h-10 w-auto md:h-11"
+          className="h-11 w-auto md:h-12"
         />
       </span>
       <span className="hidden flex-col leading-none sm:flex">
@@ -219,7 +230,7 @@ export function PMFooter({ content }: { content: SiteContent }) {
         <div className="grid grid-cols-2 gap-x-6 gap-y-9 py-10 md:py-14 lg:grid-cols-[1.4fr_1fr_1.3fr] lg:gap-12">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
-            <PMLogo className="[&_span]:text-white [&_.text-muted-foreground]:text-white/50" />
+            <PMLogo chip className="[&_.text-muted-foreground]:text-white/60 [&_.text-foreground]:text-white" />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">
               Advanced veterinary machines and equipment — imaging, laboratory,
               surgical, and diagnostic systems with installation, training, and

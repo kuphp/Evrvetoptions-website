@@ -15,7 +15,6 @@ import {
 import { getPromoStatus } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { HeroCarousel } from "@/components/site/home/hero-carousel";
-import { StatsBand } from "@/components/site/home/stats-band";
 import { CategoryCards } from "@/components/site/home/category-cards";
 import { OverviewSection } from "@/components/site/home/overview-section";
 import { CeoSection } from "@/components/site/home/ceo-section";
@@ -72,7 +71,6 @@ export default async function HomePage() {
   return (
     <>
       <HeroCarousel slides={slides} />
-      <StatsBand stats={content.company.stats} />
       <CategoryCards />
       <OverviewSection company={content.company} />
       <CeoSection ceo={content.ceo} />
