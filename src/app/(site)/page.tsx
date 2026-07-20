@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { parseISO } from "date-fns";
@@ -67,6 +68,47 @@ export default async function HomePage() {
   return (
     <>
       <HeroCarousel slides={slides} />
+
+      {/* Division + trusted partners strip */}
+      <section className="border-b bg-card/50 py-9 md:py-11">
+        <div className="container-page">
+          {/* Pet Multilines — equipment division */}
+          <Reveal className="mb-8 flex justify-center">
+            <Link
+              href="/petmultilines"
+              className="tap-scale group inline-flex items-center gap-3 rounded-2xl border bg-card px-5 py-3 shadow-sm transition-shadow hover:shadow-soft"
+            >
+              <span className="inline-flex items-center rounded-xl bg-white px-1.5 py-1 ring-1 ring-black/5">
+                <Image
+                  src="/images/pm-logo.png"
+                  alt="Pet Multilines"
+                  width={96}
+                  height={96}
+                  className="h-11 w-auto"
+                />
+              </span>
+              <span className="flex flex-col leading-none text-left">
+                <span className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+                  Our Equipment Division
+                </span>
+                <span className="mt-1 text-base font-extrabold tracking-tight">
+                  Pet <span className="text-gradient">Multilines</span>
+                </span>
+              </span>
+              <ArrowRight className="ml-1.5 h-4 w-4 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
+            </Link>
+          </Reveal>
+
+          {/* Trusted partner brands */}
+          <p className="mb-6 text-center text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+            Trusted Partners &amp; Principals
+          </p>
+          <Reveal>
+            <PartnersMarquee partners={partners} />
+          </Reveal>
+        </div>
+      </section>
+
       <CategoryCards />
       <OverviewSection company={content.company} />
       <CeoSection ceo={content.ceo} />
