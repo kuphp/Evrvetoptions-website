@@ -58,7 +58,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
   return (
     <section
       aria-label="Highlights"
-      className="relative -mt-16 overflow-hidden bg-gradient-brand-soft pt-16 md:-mt-[4.5rem] md:pt-[4.5rem]"
+      className="relative -mt-[4.5rem] overflow-hidden bg-gradient-brand-soft pt-[4.5rem] md:-mt-[5.25rem] md:pt-[5.25rem]"
     >
       {/* Animated backdrop (blur layers desktop-only — they jank low-end phones) */}
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-70 [mask-image:radial-gradient(75%_65%_at_50%_35%,black,transparent)]" />

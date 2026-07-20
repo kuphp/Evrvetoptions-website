@@ -54,7 +54,7 @@ export function SiteHeader() {
           : "border-b border-transparent bg-transparent"
       )}
     >
-      <div className="container-page flex h-16 items-center justify-between gap-2 md:h-[4.5rem]">
+      <div className="container-page flex h-[4.5rem] items-center justify-between gap-2 md:h-[5.25rem]">
         <Logo />
 
         {/* Desktop navigation */}

@@ -61,10 +61,10 @@ export function Logo({
         <Image
           src="/images/evr-logo.png"
           alt="EVR Vet Options Corporation"
-          width={172}
-          height={140}
+          width={210}
+          height={171}
           priority
-          className={cn("w-auto", compact ? "h-9" : "h-10 md:h-12")}
+          className={cn("w-auto", compact ? "h-10" : "h-12 md:h-16")}
         />
       </span>
     </Link>
