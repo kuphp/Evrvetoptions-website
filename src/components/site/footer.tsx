@@ -115,10 +115,10 @@ export function SiteFooter({
               </li>
               <li>
                 <Link
-                  href="/products/equipment"
+                  href="/petmultilines"
                   className="text-white/65 transition-colors hover:text-white"
                 >
-                  Machines &amp; Equipment
+                  Pet Multilines — Machines &amp; Equipment
                 </Link>
               </li>
               <li>

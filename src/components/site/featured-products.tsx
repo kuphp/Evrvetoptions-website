@@ -15,10 +15,12 @@ import { Reveal } from "@/components/site/reveal";
 export function FeaturedProductsCarousel({
   products,
   perView = 4,
+  hrefBase,
 }: {
   products: Product[];
   /** 3 shows bigger cards — great for equipment with product photos. */
   perView?: 3 | 4;
+  hrefBase?: string;
 }) {
   if (products.length === 0) return null;
 
@@ -45,7 +47,7 @@ export function FeaturedProductsCarousel({
                   : "basis-1/2 pl-3.5 sm:pl-5 lg:basis-1/3 xl:basis-1/4"
               }
             >
-              <ProductCard product={product} />
+              <ProductCard product={product} hrefBase={hrefBase} />
             </CarouselItem>
           ))}
         </CarouselContent>

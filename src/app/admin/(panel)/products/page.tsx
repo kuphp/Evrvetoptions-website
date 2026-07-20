@@ -1,18 +1,20 @@
 "use client";
 
 import { EntityManager, type EntityConfig } from "@/components/admin/entity-manager";
-import { PRODUCT_CATEGORIES } from "@/lib/constants";
+import { ALL_PRODUCT_CATEGORIES } from "@/lib/constants";
 
-const CATEGORY_LABELS: Record<string, string> = Object.fromEntries(
-  PRODUCT_CATEGORIES.map((c) => [c.slug, c.shortName])
-);
+const CATEGORY_LABELS: Record<string, string> = {
+  livestock: "Livestock",
+  "pet-consumables": "Pet Consumables",
+  equipment: "Pet Multilines (Equipment)",
+};
 
 const config: EntityConfig = {
   table: "products",
   singular: "Product",
   plural: "Products",
   description:
-    "Your full catalog across Livestock, Pet Consumables, and Machines & Equipment.",
+    "Your full catalog. Livestock and Pet Consumables appear on the EVR website; Equipment products appear on the Pet Multilines microsite.",
   order: { column: "name", ascending: true },
   slugFrom: "name",
   uploadFolder: "products",
@@ -23,9 +25,9 @@ const config: EntityConfig = {
       label: "Division",
       type: "select",
       required: true,
-      options: PRODUCT_CATEGORIES.map((c) => ({
+      options: ALL_PRODUCT_CATEGORIES.map((c) => ({
         value: c.slug,
-        label: c.shortName,
+        label: CATEGORY_LABELS[c.slug] ?? c.shortName,
       })),
     },
     {

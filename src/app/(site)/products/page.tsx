@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getBrands, getProducts } from "@/lib/data";
-import { PRODUCT_CATEGORIES } from "@/lib/constants";
+import { EQUIPMENT_META, PM_BASE, PRODUCT_CATEGORIES } from "@/lib/constants";
 import { CATEGORY_ICONS } from "@/lib/category-icons";
+
+const EquipmentPickerIcon = CATEGORY_ICONS.equipment;
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
 import { CategoryCards } from "@/components/site/home/category-cards";
@@ -19,11 +21,18 @@ export const metadata: Metadata = {
 };
 
 export default async function ProductsPage() {
-  const [featured, bestSellers, brands] = await Promise.all([
+  const [featuredAll, bestSellersAll, brandsAll] = await Promise.all([
     getProducts({ featured: true }),
     getProducts({ bestSeller: true }),
     getBrands(),
   ]);
+
+  // Machines & Equipment lives on the Pet Multilines microsite.
+  const featured = featuredAll.filter((p) => p.category !== "equipment");
+  const bestSellers = bestSellersAll.filter((p) => p.category !== "equipment");
+  const brands = brandsAll.filter((b) =>
+    b.categories.some((c) => c !== "equipment")
+  );
 
   return (
     <>
@@ -57,6 +66,25 @@ export default async function ProductsPage() {
               </Link>
             );
           })}
+          <Link
+            href={PM_BASE}
+            className="tap-scale group flex items-center gap-3 rounded-2xl border-2 border-dashed border-primary/40 bg-card/85 px-4 py-3.5 shadow-sm backdrop-blur transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-soft"
+          >
+            <span
+              className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${EQUIPMENT_META.gradient} text-white`}
+            >
+              <EquipmentPickerIcon className="h-5.5 w-5.5" />
+            </span>
+            <span className="flex-1">
+              <span className="block text-sm font-extrabold leading-tight tracking-tight">
+                Machines &amp; Equipment
+              </span>
+              <span className="block text-[0.65rem] font-bold uppercase tracking-widest text-primary">
+                by Pet Multilines
+              </span>
+            </span>
+            <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
+          </Link>
         </Reveal>
       </PageHero>
 

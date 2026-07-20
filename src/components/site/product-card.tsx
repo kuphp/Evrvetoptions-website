@@ -25,10 +25,19 @@ import {
 } from "@/components/ui/dialog";
 import { MediaFrame } from "@/components/site/media-frame";
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({
+  product,
+  hrefBase,
+}: {
+  product: Product;
+  /** Override detail-page base path (e.g. "/petmultilines/products"). */
+  hrefBase?: string;
+}) {
   const [quickViewOpen, setQuickViewOpen] = useState(false);
   const Icon = CATEGORY_ICONS[product.category];
-  const detailHref = `/products/${product.category}/${product.slug}`;
+  const detailHref = hrefBase
+    ? `${hrefBase}/${product.slug}`
+    : `/products/${product.category}/${product.slug}`;
   // Equipment photos are usually 3D renders — show them whole, never cropped.
   const imageFit = product.category === "equipment" ? "contain" : "cover";
 

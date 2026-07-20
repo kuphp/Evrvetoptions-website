@@ -5,33 +5,31 @@ import {
   Award,
   ChevronRight,
   Download,
-  PhoneCall,
+  FileText,
   ShieldCheck,
   Sparkles,
-  Truck,
+  Wrench,
 } from "lucide-react";
 import { getProductBySlug, getProducts } from "@/lib/data";
 import { seedProducts } from "@/lib/seed";
-import { getCategoryMeta } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ProductGallery } from "@/components/site/product-gallery";
-import { ProductCard, InquireButton } from "@/components/site/product-card";
+import { ProductCard } from "@/components/site/product-card";
 import { SectionHeading } from "@/components/site/section-heading";
 import { Reveal } from "@/components/site/reveal";
 
 export function generateStaticParams() {
-  // Equipment product pages live on the Pet Multilines microsite.
   return seedProducts
-    .filter((p) => p.category !== "equipment")
-    .map((p) => ({ category: p.category, slug: p.slug }));
+    .filter((p) => p.category === "equipment")
+    .map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ category: string; slug: string }>;
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
@@ -42,19 +40,18 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductDetailPage({
+export default async function PMProductDetailPage({
   params,
 }: {
-  params: Promise<{ category: string; slug: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { category, slug } = await params;
-  const meta = getCategoryMeta(category);
+  const { slug } = await params;
   const product = await getProductBySlug(slug);
-  if (!meta || !product || product.category !== category) notFound();
+  if (!product || product.category !== "equipment") notFound();
 
-  const related = (await getProducts({ category: product.category }))
+  const related = (await getProducts({ category: "equipment" }))
     .filter((p) => p.id !== product.id)
-    .slice(0, 4);
+    .slice(0, 3);
 
   return (
     <>
@@ -64,15 +61,11 @@ export default async function ProductDetailPage({
             aria-label="Breadcrumb"
             className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-muted-foreground"
           >
-            <Link href="/products" className="transition-colors hover:text-primary">
-              Products
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5" />
             <Link
-              href={`/products/${meta.slug}`}
+              href="/petmultilines/products"
               className="transition-colors hover:text-primary"
             >
-              {meta.shortName}
+              Equipment
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
             <span className="text-foreground">{product.name}</span>
@@ -86,7 +79,7 @@ export default async function ProductDetailPage({
             <ProductGallery
               images={product.images}
               name={product.name}
-              category={product.category}
+              category="equipment"
               seed={product.slug}
             />
           </Reveal>
@@ -147,16 +140,16 @@ export default async function ProductDetailPage({
               <Button
                 render={
                   <Link
-                    href={`/contact?subject=${encodeURIComponent(
-                      `Quote Request: ${product.name}`
+                    href={`/petmultilines/contact?subject=${encodeURIComponent(
+                      `RFQ: ${product.name}`
                     )}`}
                   />
                 }
                 size="lg"
-                className="rounded-full bg-gradient-brand px-7 font-semibold text-white shadow-soft hover:opacity-95"
+                className="tap-scale rounded-full bg-gradient-brand px-7 font-semibold text-white shadow-soft hover:opacity-95"
               >
-                <PhoneCall className="h-4 w-4" />
-                Request a Quote
+                <FileText className="h-4 w-4" />
+                Request for Quotation
               </Button>
               {product.brochure_url && (
                 <Button
@@ -169,34 +162,33 @@ export default async function ProductDetailPage({
                   }
                   size="lg"
                   variant="outline"
-                  className="rounded-full px-7 font-semibold"
+                  className="tap-scale rounded-full px-7 font-semibold"
                 >
                   <Download className="h-4 w-4" />
                   Download Brochure
                 </Button>
               )}
-              <InquireButton productName={product.name} />
             </div>
 
             <Separator className="my-8" />
 
             <div className="grid gap-4 text-sm sm:grid-cols-2">
               <div className="flex items-start gap-3">
-                <Truck className="mt-0.5 h-5 w-5 text-primary" />
-                <p className="text-muted-foreground">
-                  <span className="font-bold text-foreground">
-                    Nationwide delivery
-                  </span>{" "}
-                  with cold-chain handling where required.
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
                 <ShieldCheck className="mt-0.5 h-5 w-5 text-primary" />
                 <p className="text-muted-foreground">
                   <span className="font-bold text-foreground">
-                    Genuine & registered
+                    Warranty included
                   </span>{" "}
-                  products backed by after-sales support.
+                  — parts &amp; service by factory-trained engineers.
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <Wrench className="mt-0.5 h-5 w-5 text-primary" />
+                <p className="text-muted-foreground">
+                  <span className="font-bold text-foreground">
+                    Installation &amp; training
+                  </span>{" "}
+                  included with every purchase.
                 </p>
               </div>
             </div>
@@ -207,13 +199,14 @@ export default async function ProductDetailPage({
       {related.length > 0 && (
         <section className="section-pad border-t bg-muted/40">
           <div className="container-page">
-            <SectionHeading
-              eyebrow="You Might Also Need"
-              title={`More ${meta.shortName}`}
-            />
-            <div className="grid grid-cols-2 gap-3.5 sm:gap-6 lg:grid-cols-4">
+            <SectionHeading eyebrow="Related Systems" title="More Equipment" />
+            <div className="grid grid-cols-2 gap-3.5 sm:gap-6 lg:grid-cols-3">
               {related.map((p) => (
-                <ProductCard key={p.id} product={p} />
+                <ProductCard
+                  key={p.id}
+                  product={p}
+                  hrefBase="/petmultilines/products"
+                />
               ))}
             </div>
           </div>

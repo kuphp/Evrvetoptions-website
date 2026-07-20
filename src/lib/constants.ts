@@ -15,12 +15,12 @@ export const NAV_LINKS = [
     children: [
       { label: "Livestock", href: "/products/livestock" },
       { label: "Pet Consumables", href: "/products/pet-consumables" },
-      { label: "Machines & Equipment", href: "/products/equipment" },
     ],
   },
   { label: "Events", href: "/events" },
   { label: "Promotions", href: "/promotions" },
   { label: "Partners", href: "/partners" },
+  { label: "Pet Multilines", href: "/petmultilines" },
   { label: "Contact Us", href: "/contact" },
 ] as const;
 
@@ -35,6 +35,7 @@ export interface CategoryMeta {
   icon: "livestock" | "pets" | "equipment";
 }
 
+/** Categories shown on the main EVR Vet Options website. */
 export const PRODUCT_CATEGORIES: CategoryMeta[] = [
   {
     slug: "livestock",
@@ -58,22 +59,62 @@ export const PRODUCT_CATEGORIES: CategoryMeta[] = [
     tint: "text-[#1004b4] dark:text-[#8a7bff]",
     icon: "pets",
   },
-  {
-    slug: "equipment",
-    name: "Machines & Equipment",
-    shortName: "Machines & Equipment",
-    description:
-      "World-class veterinary and medical equipment — imaging, diagnostics, and laboratory systems with full specifications, brochures, and after-sales support.",
-    bullets: ["X-ray", "Ultrasound", "CT Imaging", "Laboratory", "Diagnostics"],
-    gradient: "from-[#046304] via-[#14549c] to-[#1004b4]",
-    tint: "text-[#14549c] dark:text-[#7f9fff]",
-    icon: "equipment",
-  },
+];
+
+/**
+ * Machines & Equipment lives on the dedicated Pet Multilines microsite,
+ * but its products share the same database (category = "equipment").
+ */
+export const EQUIPMENT_META: CategoryMeta = {
+  slug: "equipment",
+  name: "Machines & Equipment",
+  shortName: "Machines & Equipment",
+  description:
+    "World-class veterinary and medical equipment — imaging, diagnostics, laboratory, and surgical systems with full specifications, brochures, and after-sales support.",
+  bullets: ["X-ray", "Ultrasound", "CT Imaging", "Laboratory", "Diagnostics"],
+  gradient: "from-[#046304] via-[#14549c] to-[#1004b4]",
+  tint: "text-[#14549c] dark:text-[#7f9fff]",
+  icon: "equipment",
+};
+
+/** All divisions across both websites (used by the shared admin panel). */
+export const ALL_PRODUCT_CATEGORIES: CategoryMeta[] = [
+  ...PRODUCT_CATEGORIES,
+  EQUIPMENT_META,
 ];
 
 export function getCategoryMeta(slug: string): CategoryMeta | undefined {
   return PRODUCT_CATEGORIES.find((c) => c.slug === slug);
 }
+
+/* ── Pet Multilines microsite ───────────────────────────── */
+
+export const PM_NAME = "Pet Multilines";
+export const PM_TAGLINE = "Advanced Veterinary Machines & Equipment";
+export const PM_DIVISION_NOTE =
+  "Pet Multilines is a Business Division of EVR Vet Options Corporation.";
+export const PM_BASE = "/petmultilines";
+
+export const PM_NAV_LINKS = [
+  { label: "Home", href: "/petmultilines" },
+  { label: "About Us", href: "/petmultilines/about" },
+  { label: "Products", href: "/petmultilines/products" },
+  { label: "Services", href: "/petmultilines/services" },
+  { label: "Gallery", href: "/petmultilines/gallery" },
+  { label: "News & Events", href: "/petmultilines/news" },
+  { label: "Contact / RFQ", href: "/petmultilines/contact" },
+] as const;
+
+export const PM_EQUIPMENT_LINES = [
+  "Veterinary X-Ray Systems",
+  "Ultrasound Machines",
+  "CT Scan Equipment",
+  "Laboratory Equipment",
+  "Surgical Equipment",
+  "Diagnostic Equipment",
+  "Monitoring Equipment",
+  "Veterinary Instruments",
+] as const;
 
 export const GALLERY_CATEGORIES = [
   { value: "office", label: "Office" },

@@ -86,8 +86,8 @@ select * from (values
    'From anti-tick treatments and dewormers to premium nutrition and grooming lines — trusted pet consumables for clinics, groomers, and pet shops.',
    'Pet Consumables', '/products/pet-consumables', 'View Promotions', '/promotions', '/images/hero-pets.jpg', 3, true),
   ('World-Class Veterinary Machines & Equipment',
-   'Digital X-ray, ultrasound, CT imaging, and laboratory systems — with installation, training, warranty, and after-sales service you can rely on.',
-   'Machines & Equipment', '/products/equipment', 'Request a Demo', '/contact', '/images/hero-equipment.jpg', 4, true)
+   'Digital X-ray, ultrasound, CT imaging, and laboratory systems — served by Pet Multilines, our dedicated equipment division, with installation, training, and after-sales service.',
+   'Visit Pet Multilines', '/petmultilines', 'Request a Demo', '/petmultilines/contact', '/images/hero-equipment.jpg', 4, true)
 ) as v(title, subtitle, cta_label, cta_href, cta_secondary_label, cta_secondary_href, image_url, sort_order, active)
 where not exists (select 1 from public.hero_slides);
 

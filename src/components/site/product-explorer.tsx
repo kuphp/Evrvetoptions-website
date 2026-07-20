@@ -17,10 +17,12 @@ import { ProductCard } from "@/components/site/product-card";
 export function ProductExplorer({
   products,
   maxCols = 4,
+  hrefBase,
 }: {
   products: Product[];
   /** 3 shows bigger cards — great for equipment with product photos. */
   maxCols?: 3 | 4;
+  hrefBase?: string;
 }) {
   const [query, setQuery] = useState("");
   const [subcategory, setSubcategory] = useState<string>("all");
@@ -125,7 +127,7 @@ export function ProductExplorer({
           }
         >
           {filtered.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} hrefBase={hrefBase} />
           ))}
         </div>
       ) : (

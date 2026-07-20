@@ -56,6 +56,10 @@ export default async function HomePage() {
     getFaqs(),
   ]);
 
+  // Machines & Equipment lives on the Pet Multilines microsite.
+  const featuredEvr = featured.filter((p) => p.category !== "equipment");
+  const bestSellersEvr = bestSellers.filter((p) => p.category !== "equipment");
+
   const now = new Date();
   const upcomingEvents = events
     .filter((e) => parseISO(e.end_date ?? e.date) >= now)
@@ -81,7 +85,7 @@ export default async function HomePage() {
             title="Featured Products"
             description="A curated selection from across our three divisions — chosen by our veterinarians and product specialists."
           />
-          <FeaturedProductsCarousel products={featured} />
+          <FeaturedProductsCarousel products={featuredEvr} />
           <Reveal className="mt-10 text-center">
             <Button
               render={<Link href="/products" />}
@@ -96,7 +100,7 @@ export default async function HomePage() {
       </section>
 
       {/* Best sellers */}
-      {bestSellers.length > 0 && (
+      {bestSellersEvr.length > 0 && (
         <section className="section-pad border-y bg-muted/40">
           <div className="container-page">
             <SectionHeading
@@ -105,7 +109,7 @@ export default async function HomePage() {
               description="The products our customers keep coming back for — proven in Philippine farms, clinics, and shops."
             />
             <div className="grid grid-cols-2 gap-3.5 sm:gap-6 lg:grid-cols-4">
-              {bestSellers.slice(0, 4).map((product) => (
+              {bestSellersEvr.slice(0, 4).map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
