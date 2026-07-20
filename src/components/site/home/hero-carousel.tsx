@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
@@ -21,7 +22,6 @@ import {
 import type { HeroSlide } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { MediaFrame } from "@/components/site/media-frame";
 
 const SLIDE_ICONS = [Stethoscope, Tractor, PawPrint, Microscope];
 
@@ -78,10 +78,25 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
             return (
               <div
                 key={slide.id}
-                className="min-w-0 flex-[0_0_100%]"
+                className="relative min-w-0 flex-[0_0_100%]"
                 aria-hidden={!isSelected}
               >
-                <div className="container-page grid min-h-[28rem] items-center gap-10 py-10 md:min-h-[34rem] md:py-20 lg:min-h-[36rem] lg:grid-cols-[1.15fr_1fr] lg:gap-14">
+                {/* Full-bleed slide image with a legibility gradient on the left */}
+                {slide.image_url && (
+                  <>
+                    <Image
+                      src={slide.image_url}
+                      alt=""
+                      fill
+                      priority={index === 0}
+                      sizes="100vw"
+                      className="object-cover object-[72%_center]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/5" />
+                  </>
+                )}
+
+                <div className="container-page relative grid min-h-[28rem] items-center gap-10 py-10 md:min-h-[34rem] md:py-20 lg:min-h-[36rem] lg:grid-cols-[1.15fr_1fr] lg:gap-14">
                   {/* Copy */}
                   <motion.div
                     animate={
@@ -123,28 +138,19 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
                     </div>
                   </motion.div>
 
-                  {/* Visual */}
-                  <motion.div
-                    className="relative hidden lg:block"
-                    animate={
-                      isSelected
-                        ? { opacity: 1, scale: 1 }
-                        : { opacity: 0.2, scale: 0.96 }
-                    }
-                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <div className="relative mx-auto aspect-[5/4] w-full max-w-lg">
-                      <div className="absolute inset-0 rotate-2 rounded-[2rem] bg-gradient-brand opacity-15 blur-sm" />
-                      {slide.image_url ? (
-                        <MediaFrame
-                          src={slide.image_url}
-                          alt={slide.title}
-                          seed={slide.id}
-                          priority={index === 0}
-                          sizes="(max-width: 1024px) 0px, 40vw"
-                          className="absolute inset-0 rounded-[2rem] border shadow-soft"
-                        />
-                      ) : (
+                  {/* Visual panel — only for slides without a photo */}
+                  {!slide.image_url ? (
+                    <motion.div
+                      className="relative hidden lg:block"
+                      animate={
+                        isSelected
+                          ? { opacity: 1, scale: 1 }
+                          : { opacity: 0.2, scale: 0.96 }
+                      }
+                      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <div className="relative mx-auto aspect-[5/4] w-full max-w-lg">
+                        <div className="absolute inset-0 rotate-2 rounded-[2rem] bg-gradient-brand opacity-15 blur-sm" />
                         <div className="glass absolute inset-0 flex items-center justify-center rounded-[2rem] shadow-soft">
                           <div className="flex h-40 w-40 items-center justify-center rounded-[2.5rem] bg-gradient-brand text-white shadow-soft">
                             <Icon className="h-20 w-20" strokeWidth={1.4} />
@@ -152,25 +158,27 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
                           <div className="absolute left-8 top-8 h-3 w-3 rounded-full bg-brand-green/50" />
                           <div className="absolute bottom-10 right-10 h-2.5 w-2.5 rounded-full bg-brand-blue/50" />
                         </div>
-                      )}
 
-                      {/* Floating chip */}
-                      <div className="glass absolute -left-6 bottom-10 flex animate-float items-center gap-2.5 rounded-2xl px-4 py-3 shadow-soft">
-                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-brand text-white">
-                          <ChipIcon className="h-4.5 w-4.5" />
-                        </span>
-                        <span className="text-sm font-bold">{chip.label}</span>
+                        {/* Floating chips */}
+                        <div className="glass absolute -left-6 bottom-10 flex animate-float items-center gap-2.5 rounded-2xl px-4 py-3 shadow-soft">
+                          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-brand text-white">
+                            <ChipIcon className="h-4.5 w-4.5" />
+                          </span>
+                          <span className="text-sm font-bold">{chip.label}</span>
+                        </div>
+                        <div className="glass absolute -right-4 top-8 animate-float-delayed rounded-2xl px-4 py-3 shadow-soft">
+                          <p className="text-lg font-extrabold text-gradient">
+                            EVR
+                          </p>
+                          <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-muted-foreground">
+                            Est. Quality
+                          </p>
+                        </div>
                       </div>
-                      <div className="glass absolute -right-4 top-8 animate-float-delayed rounded-2xl px-4 py-3 shadow-soft">
-                        <p className="text-lg font-extrabold text-gradient">
-                          EVR
-                        </p>
-                        <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-muted-foreground">
-                          Est. Quality
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  ) : (
+                    <div className="hidden lg:block" />
+                  )}
                 </div>
               </div>
             );

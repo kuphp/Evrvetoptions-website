@@ -74,21 +74,21 @@ $json$::jsonb)
 on conflict (key) do update set value = excluded.value, updated_at = now();
 
 -- ── Hero slides ──────────────────────────────────────────────
-insert into public.hero_slides (title, subtitle, cta_label, cta_href, cta_secondary_label, cta_secondary_href, sort_order, active)
+insert into public.hero_slides (title, subtitle, cta_label, cta_href, cta_secondary_label, cta_secondary_href, image_url, sort_order, active)
 select * from (values
   ('Advancing Animal Health Across the Philippines',
    'Excellence. Value. Reliability. World-class veterinary products, consumables, and equipment for farms, clinics, and pet businesses nationwide.',
-   'Explore Our Products', '/products', 'Get in Touch', '/contact', 1, true),
+   'Explore Our Products', '/products', 'Get in Touch', '/contact', null, 1, true),
   ('Complete Solutions for Modern Livestock Farms',
    'Biologics, nutrition, and farm management essentials for poultry, swine, cattle, and goats — backed by licensed veterinarians and nationwide delivery.',
-   'Livestock Solutions', '/products/livestock', 'Talk to Our Team', '/contact', 2, true),
+   'Livestock Solutions', '/products/livestock', 'Talk to Our Team', '/contact', '/images/hero-livestock.jpg', 2, true),
   ('Everything Your Companion Animals Deserve',
    'From anti-tick treatments and dewormers to premium nutrition and grooming lines — trusted pet consumables for clinics, groomers, and pet shops.',
-   'Pet Consumables', '/products/pet-consumables', 'View Promotions', '/promotions', 3, true),
+   'Pet Consumables', '/products/pet-consumables', 'View Promotions', '/promotions', '/images/hero-pets.jpg', 3, true),
   ('World-Class Veterinary Machines & Equipment',
    'Digital X-ray, ultrasound, CT imaging, and laboratory systems — with installation, training, warranty, and after-sales service you can rely on.',
-   'Machines & Equipment', '/products/equipment', 'Request a Demo', '/contact', 4, true)
-) as v(title, subtitle, cta_label, cta_href, cta_secondary_label, cta_secondary_href, sort_order, active)
+   'Machines & Equipment', '/products/equipment', 'Request a Demo', '/contact', '/images/hero-equipment.jpg', 4, true)
+) as v(title, subtitle, cta_label, cta_href, cta_secondary_label, cta_secondary_href, image_url, sort_order, active)
 where not exists (select 1 from public.hero_slides);
 
 -- ── Brands ───────────────────────────────────────────────────
