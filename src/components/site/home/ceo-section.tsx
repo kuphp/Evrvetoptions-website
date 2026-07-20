@@ -37,10 +37,10 @@ export function CeoSection({ ceo }: { ceo: CeoInfo }) {
           <p className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.22em] text-gradient">
             A Message from Our President
           </p>
-          <div className="relative">
-            <Quote className="absolute -left-2 -top-4 h-10 w-10 text-brand-green/20" />
-            <blockquote className="text-2xl font-bold leading-snug tracking-tight text-balance sm:text-[1.7rem]">
-              “{ceo.quote}”
+          <div>
+            <Quote className="h-9 w-9 fill-brand-green/15 text-brand-green/40" />
+            <blockquote className="mt-4 text-2xl font-bold leading-snug tracking-tight text-balance sm:text-[1.7rem]">
+              {ceo.quote}
             </blockquote>
           </div>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
