@@ -40,11 +40,14 @@ export function Logo({
   className,
   compact = false,
   chip = false,
+  onDark = false,
 }: {
   className?: string;
   markClassName?: string;
   compact?: boolean;
   chip?: boolean;
+  /** Use the brightened icon (no white chip) for dark surfaces like the footer. */
+  onDark?: boolean;
 }) {
   return (
     <Link
@@ -55,11 +58,11 @@ export function Logo({
       <span
         className={cn(
           "tap-scale inline-flex items-center transition-transform duration-300 group-hover:scale-[1.03]",
-          chip && "rounded-xl bg-white px-2 py-1 shadow-sm ring-1 ring-black/5"
+          chip && !onDark && "rounded-xl bg-white px-2 py-1 shadow-sm ring-1 ring-black/5"
         )}
       >
         <Image
-          src="/images/evr-icon.png"
+          src={onDark ? "/images/evr-icon-light.png" : "/images/evr-icon.png"}
           alt="EVR Vet Options Corporation"
           width={174}
           height={140}

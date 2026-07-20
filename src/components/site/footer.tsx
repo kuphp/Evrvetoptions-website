@@ -51,7 +51,7 @@ export function SiteFooter({
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
             <Logo
-              chip
+              onDark
               className="[&_.text-foreground]:text-white [&_.text-muted-foreground]:text-white/60"
             />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65 md:mt-5">
