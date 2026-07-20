@@ -20,8 +20,9 @@ export function CeoSection({ ceo }: { ceo: CeoInfo }) {
             icon={UserRound}
             seed="ceo-portrait"
             priority
+            fit="contain"
             sizes="(max-width: 1024px) 90vw, 40vw"
-            className="relative aspect-[4/5] rounded-[2rem] border shadow-soft"
+            className="relative aspect-[4/5] rounded-[2rem] border bg-white shadow-soft"
           />
           <div className="glass absolute -bottom-6 left-1/2 w-[85%] -translate-x-1/2 rounded-2xl px-6 py-4 text-center shadow-soft">
             <p className="text-lg font-extrabold tracking-tight">{ceo.name}</p>

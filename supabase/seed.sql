@@ -35,11 +35,11 @@ insert into public.site_content (key, value) values
 $json$::jsonb),
 ('ceo', $json$
 {
-  "name": "Elizardo V. Reyes",
+  "name": "Dr. Elizardo V. Reyes",
   "title": "President / CEO",
   "quote": "Every animal we help care for represents a family, a farm, a livelihood. That is a responsibility we carry with pride.",
   "message": "When we founded EVR Vet Options, we made a promise that our name would stand for Excellence, Value, and Reliability. Today, that promise guides every shipment we deliver, every clinic we equip, and every farmer we serve. The Philippine animal industry is filled with hardworking people who deserve a partner that treats their success as its own — and that is exactly the company we have built. Thank you for trusting EVR Vet Options. We look forward to growing with you.",
-  "photo_url": null
+  "photo_url": "/images/dr-elizardo-reyes.png"
 }
 $json$::jsonb),
 ('contact', $json$
