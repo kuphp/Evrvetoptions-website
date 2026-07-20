@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/site/section-heading";
 import { Reveal, RevealItem, RevealStagger } from "@/components/site/reveal";
 import { FeaturedProductsCarousel } from "@/components/site/featured-products";
+import { BrandStrip } from "@/components/site/brand-strip";
 import { PMCta } from "@/components/pm/pm-cta";
 
 const LINE_ICONS = [
@@ -240,15 +241,8 @@ export default async function PetMultilinesHome() {
               eyebrow="Our Principals"
               title="Equipment Brands We Represent"
             />
-            <Reveal className="flex flex-wrap items-center justify-center gap-3">
-              {brands.map((brand) => (
-                <span
-                  key={brand.id}
-                  className="glass rounded-full px-6 py-2.5 text-sm font-extrabold tracking-tight text-foreground/70"
-                >
-                  {brand.name}
-                </span>
-              ))}
+            <Reveal>
+              <BrandStrip brands={brands} />
             </Reveal>
           </div>
         </section>

@@ -92,20 +92,27 @@ select * from (values
 where not exists (select 1 from public.hero_slides);
 
 -- ── Brands ───────────────────────────────────────────────────
-insert into public.brands (name, categories)
+insert into public.brands (name, logo_url, categories)
 select * from (values
-  ('AgriVax Biologics', array['livestock']),
-  ('VetNova Animal Health', array['livestock', 'pet-consumables']),
-  ('PhilFarm Nutrition', array['livestock']),
-  ('BioShield Animal Health', array['livestock']),
-  ('PetVital', array['pet-consumables']),
-  ('NutriPaws', array['pet-consumables']),
-  ('GroomPro', array['pet-consumables']),
-  ('MedVet Imaging', array['equipment']),
-  ('ProVet Diagnostics', array['equipment']),
-  ('LabCore Systems', array['equipment']),
-  ('VetTech Instruments', array['equipment'])
-) as v(name, categories)
+  ('Boehringer Ingelheim', '/images/partners/boehringer.png', array['livestock', 'pet-consumables']),
+  ('Zoetis', '/images/partners/zoetis.png', array['livestock', 'pet-consumables']),
+  ('MSD Animal Health', '/images/partners/msd.png', array['livestock', 'pet-consumables']),
+  ('Elanco', '/images/partners/elanco.png', array['livestock', 'pet-consumables']),
+  ('Cargill', '/images/partners/cargill.jpg', array['livestock']),
+  ('Hipra', '/images/partners/hipra.jpg', array['livestock', 'pet-consumables']),
+  ('Virbac', '/images/partners/virbac.png', array['pet-consumables']),
+  ('Sontu', '/images/partners/sontu.png', array['equipment']),
+  ('Edan', '/images/partners/edan.png', array['equipment']),
+  ('RWD', '/images/partners/rwd.jpg', array['equipment']),
+  ('Browiner', '/images/partners/browiner.png', array['equipment']),
+  ('Aohua', '/images/partners/aohua.png', array['equipment']),
+  ('Bizvet', '/images/partners/bizvet.png', array['equipment']),
+  ('Infinnomed', '/images/partners/infinnomed.png', array['equipment']),
+  ('Manpharma', '/images/partners/manpharma.png', array['equipment']),
+  ('Pretta', '/images/partners/pretta.png', array['equipment']),
+  ('Tootoo', '/images/partners/tootoo.png', array['equipment']),
+  ('Willway', '/images/partners/willway.png', array['equipment'])
+) as v(name, logo_url, categories)
 where not exists (select 1 from public.brands);
 
 -- ── Products ─────────────────────────────────────────────────
@@ -271,12 +278,16 @@ insert into public.events (slug, title, type, date, end_date, location, descript
 on conflict (slug) do nothing;
 
 -- ── Partners ─────────────────────────────────────────────────
-insert into public.partners (name, sort_order)
+insert into public.partners (name, logo_url, website, sort_order)
 select * from (values
-  ('AgriVax Biologics', 1), ('VetNova Animal Health', 2), ('PhilFarm Nutrition', 3),
-  ('BioShield Animal Health', 4), ('PetVital', 5), ('NutriPaws', 6), ('GroomPro', 7),
-  ('MedVet Imaging', 8), ('ProVet Diagnostics', 9), ('LabCore Systems', 10), ('VetTech Instruments', 11)
-) as v(name, sort_order)
+  ('Boehringer Ingelheim', '/images/partners/boehringer.png', 'https://www.boehringer-ingelheim.com', 1),
+  ('Zoetis', '/images/partners/zoetis.png', 'https://www.zoetis.com', 2),
+  ('MSD Animal Health', '/images/partners/msd.png', 'https://www.msd-animal-health.com', 3),
+  ('Elanco', '/images/partners/elanco.png', 'https://www.elanco.com', 4),
+  ('Cargill', '/images/partners/cargill.jpg', 'https://www.cargill.com', 5),
+  ('Hipra', '/images/partners/hipra.jpg', 'https://www.hipra.com', 6),
+  ('Virbac', '/images/partners/virbac.png', 'https://www.virbac.com', 7)
+) as v(name, logo_url, website, sort_order)
 where not exists (select 1 from public.partners);
 
 -- ── Testimonials ─────────────────────────────────────────────
@@ -330,17 +341,18 @@ select * from (values
 where not exists (select 1 from public.faqs);
 
 -- ── Gallery ──────────────────────────────────────────────────
-insert into public.gallery (title, category)
+insert into public.gallery (title, category, image_url)
 select * from (values
-  ('Head Office Reception', 'office'),
-  ('Customer Care Team', 'office'),
-  ('Main Distribution Warehouse', 'warehouse'),
-  ('Cold Chain Storage Facility', 'warehouse'),
-  ('Equipment Showroom', 'showroom'),
-  ('Imaging Demo Suite', 'showroom'),
-  ('Sales & Veterinary Services Team', 'team'),
-  ('Team Building 2025', 'team'),
-  ('EVR Booth — PhilVet Expo', 'events'),
-  ('Dealer Awards Night', 'events')
-) as v(title, category)
+  ('EVR Davao Branch', 'office', '/images/gallery/davao-1.jpg'),
+  ('EVR Davao Branch — Warehouse', 'warehouse', '/images/gallery/davao-2.jpg'),
+  ('EVR Davao Branch — Stock Area', 'warehouse', '/images/gallery/davao-3.jpg'),
+  ('EVR Davao Team', 'team', '/images/gallery/davao-4.jpg'),
+  ('EVR Iloilo Branch', 'office', '/images/gallery/iloilo-1.jpg'),
+  ('EVR Iloilo Branch — Warehouse', 'warehouse', '/images/gallery/iloilo-2.jpg'),
+  ('EVR Iloilo Branch — Stock Area', 'warehouse', '/images/gallery/iloilo-3.jpg'),
+  ('EVR Iloilo Branch — Receiving', 'warehouse', '/images/gallery/iloilo-4.jpg'),
+  ('EVR Iloilo Branch — Office', 'office', '/images/gallery/iloilo-5.jpg'),
+  ('EVR Iloilo Team', 'team', '/images/gallery/iloilo-6.jpg'),
+  ('Tinang Facility', 'warehouse', '/images/gallery/tinang-1.jpg')
+) as v(title, category, image_url)
 where not exists (select 1 from public.gallery);

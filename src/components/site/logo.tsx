@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
+/** Brand mark used for loaders and fallbacks (matches the official colors). */
 export function LogoMark({ className }: { className?: string }) {
   return (
     <svg
@@ -30,9 +32,12 @@ export function LogoMark({ className }: { className?: string }) {
   );
 }
 
+/**
+ * Official EVR Vet Options logo. Sits on a white chip so it stays crisp on
+ * light headers, dark mode, and the navy footer alike.
+ */
 export function Logo({
   className,
-  markClassName,
   compact = false,
 }: {
   className?: string;
@@ -42,25 +47,19 @@ export function Logo({
   return (
     <Link
       href="/"
-      className={cn("group flex items-center gap-2.5", className)}
+      className={cn("group inline-flex items-center", className)}
       aria-label="EVR Vet Options Corporation — Home"
     >
-      <LogoMark
-        className={cn(
-          "transition-transform duration-300 group-hover:scale-105",
-          markClassName
-        )}
-      />
-      {!compact && (
-        <span className="flex flex-col leading-none">
-          <span className="text-[1.05rem] font-extrabold tracking-tight">
-            EVR <span className="text-gradient">Vet Options</span>
-          </span>
-          <span className="mt-1 text-[0.58rem] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
-            Corporation
-          </span>
-        </span>
-      )}
+      <span className="tap-scale inline-flex items-center rounded-xl bg-white px-2.5 py-1.5 shadow-sm ring-1 ring-black/5 transition-transform duration-300 group-hover:scale-[1.03]">
+        <Image
+          src="/images/evr-logo.png"
+          alt="EVR Vet Options Corporation"
+          width={172}
+          height={138}
+          priority
+          className={cn("w-auto", compact ? "h-8" : "h-9 md:h-10")}
+        />
+      </span>
     </Link>
   );
 }

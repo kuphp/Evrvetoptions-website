@@ -7,18 +7,18 @@ function PartnerChip({ partner }: { partner: Partner }) {
     <Image
       src={partner.logo_url}
       alt={partner.name}
-      width={140}
+      width={150}
       height={48}
-      className="h-10 w-auto object-contain"
+      className="h-10 w-auto max-w-36 object-contain"
     />
   ) : (
-    <span className="whitespace-nowrap text-base font-extrabold tracking-tight text-foreground/60 transition-colors group-hover/chip:text-foreground">
+    <span className="whitespace-nowrap text-base font-extrabold tracking-tight text-slate-600 transition-colors group-hover/chip:text-slate-900">
       {partner.name}
     </span>
   );
 
   const className =
-    "group/chip glass flex h-16 shrink-0 items-center justify-center rounded-2xl px-8 transition-all hover:shadow-soft";
+    "group/chip flex h-16 shrink-0 items-center justify-center rounded-2xl border bg-white px-8 shadow-sm transition-all hover:shadow-soft";
 
   return partner.website ? (
     <a

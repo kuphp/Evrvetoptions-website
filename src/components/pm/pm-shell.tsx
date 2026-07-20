@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Menu, PhoneCall } from "lucide-react";
@@ -19,7 +20,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { LogoMark } from "@/components/site/logo";
 import { ThemeToggle } from "@/components/site/theme-toggle";
 
 export function PMLogo({ className }: { className?: string }) {
@@ -29,13 +29,22 @@ export function PMLogo({ className }: { className?: string }) {
       className={cn("group flex items-center gap-2.5", className)}
       aria-label="Pet Multilines — Home"
     >
-      <LogoMark className="h-9 w-9 transition-transform duration-300 group-hover:scale-105" />
-      <span className="flex flex-col leading-none">
-        <span className="text-[1.05rem] font-extrabold tracking-tight">
-          Pet <span className="text-gradient">Multilines</span>
+      <span className="tap-scale inline-flex items-center rounded-xl bg-white px-2 py-1 shadow-sm ring-1 ring-black/5 transition-transform duration-300 group-hover:scale-[1.03]">
+        <Image
+          src="/images/pm-logo.jpg"
+          alt="Pet Multilines"
+          width={96}
+          height={96}
+          priority
+          className="h-10 w-auto md:h-11"
+        />
+      </span>
+      <span className="hidden flex-col leading-none sm:flex">
+        <span className="text-[0.6rem] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+          A Division of
         </span>
-        <span className="mt-1 text-[0.55rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-          by EVR Vet Options Corp.
+        <span className="mt-0.5 text-[0.7rem] font-extrabold tracking-tight">
+          EVR Vet Options Corp.
         </span>
       </span>
     </Link>
@@ -75,10 +84,19 @@ export function PMHeader() {
           </p>
           <Link
             href="/"
-            className="tap-scale inline-flex items-center gap-1.5 text-white/85 transition-colors hover:text-white"
+            className="tap-scale inline-flex items-center gap-2 text-white/85 transition-colors hover:text-white"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Back to EVR Vet Options
+            <span className="hidden items-center rounded-md bg-white px-1.5 py-0.5 sm:inline-flex">
+              <Image
+                src="/images/evr-logo.png"
+                alt=""
+                width={40}
+                height={32}
+                className="h-5 w-auto"
+              />
+            </span>
           </Link>
         </div>
       </div>

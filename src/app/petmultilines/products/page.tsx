@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/site/section-heading";
 import { Reveal, RevealItem, RevealStagger } from "@/components/site/reveal";
 import { ProductExplorer } from "@/components/site/product-explorer";
 import { FeaturedProductsCarousel } from "@/components/site/featured-products";
+import { BrandStrip } from "@/components/site/brand-strip";
 import { PMCta } from "@/components/pm/pm-cta";
 
 export const metadata: Metadata = {
@@ -134,15 +135,8 @@ export default async function PMProductsPage() {
       {brands.length > 0 && (
         <section className="pb-6">
           <div className="container-page">
-            <Reveal className="flex flex-wrap items-center justify-center gap-3">
-              {brands.map((brand) => (
-                <span
-                  key={brand.id}
-                  className="glass rounded-full px-6 py-2.5 text-sm font-extrabold tracking-tight text-foreground/70"
-                >
-                  {brand.name}
-                </span>
-              ))}
+            <Reveal>
+              <BrandStrip brands={brands} />
             </Reveal>
           </div>
         </section>

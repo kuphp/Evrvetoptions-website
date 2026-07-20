@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getBrands, getProducts } from "@/lib/data";
-import { EQUIPMENT_META, PM_BASE, PRODUCT_CATEGORIES } from "@/lib/constants";
+import { PM_BASE, PRODUCT_CATEGORIES } from "@/lib/constants";
 import { CATEGORY_ICONS } from "@/lib/category-icons";
-
-const EquipmentPickerIcon = CATEGORY_ICONS.equipment;
 import { PageHero } from "@/components/site/page-hero";
+import { BrandStrip } from "@/components/site/brand-strip";
 import { SectionHeading } from "@/components/site/section-heading";
 import { CategoryCards } from "@/components/site/home/category-cards";
 import { FeaturedProductsCarousel } from "@/components/site/featured-products";
@@ -70,10 +70,14 @@ export default async function ProductsPage() {
             href={PM_BASE}
             className="tap-scale group flex items-center gap-3 rounded-2xl border-2 border-dashed border-primary/40 bg-card/85 px-4 py-3.5 shadow-sm backdrop-blur transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-soft"
           >
-            <span
-              className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${EQUIPMENT_META.gradient} text-white`}
-            >
-              <EquipmentPickerIcon className="h-5.5 w-5.5" />
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white ring-1 ring-black/5">
+              <Image
+                src="/images/pm-logo.jpg"
+                alt="Pet Multilines"
+                width={44}
+                height={44}
+                className="h-9 w-9 object-contain"
+              />
             </span>
             <span className="flex-1">
               <span className="block text-sm font-extrabold leading-tight tracking-tight">
@@ -126,15 +130,8 @@ export default async function ProductsPage() {
               title="Trusted Brands, One Distributor"
               description="We represent respected local and international animal health brands."
             />
-            <Reveal className="flex flex-wrap items-center justify-center gap-3">
-              {brands.map((brand) => (
-                <span
-                  key={brand.id}
-                  className="glass rounded-full px-6 py-2.5 text-sm font-extrabold tracking-tight text-foreground/70"
-                >
-                  {brand.name}
-                </span>
-              ))}
+            <Reveal>
+              <BrandStrip brands={brands} />
             </Reveal>
           </div>
         </section>

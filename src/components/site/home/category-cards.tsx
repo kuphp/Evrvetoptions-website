@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
-import { EQUIPMENT_META, PM_BASE, PM_NAME, PRODUCT_CATEGORIES } from "@/lib/constants";
+import { EQUIPMENT_META, PM_BASE, PRODUCT_CATEGORIES } from "@/lib/constants";
 import { CATEGORY_ICONS } from "@/lib/category-icons";
 import { SectionHeading } from "@/components/site/section-heading";
 import { RevealItem, RevealStagger } from "@/components/site/reveal";
@@ -91,8 +92,14 @@ export function CategoryCards() {
                     strokeWidth={1.5}
                   />
                 </div>
-                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[0.62rem] font-extrabold uppercase tracking-widest text-brand-deep">
-                  {PM_NAME}
+                <span className="absolute left-4 top-4 inline-flex items-center rounded-xl bg-white px-2 py-1 shadow-soft">
+                  <Image
+                    src="/images/pm-logo.jpg"
+                    alt="Pet Multilines"
+                    width={72}
+                    height={72}
+                    className="h-9 w-auto"
+                  />
                 </span>
                 <ExternalLink className="absolute right-5 top-5 h-5 w-5 text-white/70 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
               </div>

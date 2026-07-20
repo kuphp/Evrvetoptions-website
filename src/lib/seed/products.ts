@@ -1,17 +1,26 @@
 import type { Brand, Product } from "@/lib/types";
 
 export const seedBrands: Brand[] = [
-  { id: "br-1", name: "AgriVax Biologics", logo_url: null, categories: ["livestock"] },
-  { id: "br-2", name: "VetNova Animal Health", logo_url: null, categories: ["livestock", "pet-consumables"] },
-  { id: "br-3", name: "PhilFarm Nutrition", logo_url: null, categories: ["livestock"] },
-  { id: "br-4", name: "BioShield Animal Health", logo_url: null, categories: ["livestock"] },
-  { id: "br-5", name: "PetVital", logo_url: null, categories: ["pet-consumables"] },
-  { id: "br-6", name: "NutriPaws", logo_url: null, categories: ["pet-consumables"] },
-  { id: "br-7", name: "GroomPro", logo_url: null, categories: ["pet-consumables"] },
-  { id: "br-8", name: "MedVet Imaging", logo_url: null, categories: ["equipment"] },
-  { id: "br-9", name: "ProVet Diagnostics", logo_url: null, categories: ["equipment"] },
-  { id: "br-10", name: "LabCore Systems", logo_url: null, categories: ["equipment"] },
-  { id: "br-11", name: "VetTech Instruments", logo_url: null, categories: ["equipment"] },
+  // ── Animal health principals (EVR main site) ──
+  { id: "br-1", name: "Boehringer Ingelheim", logo_url: "/images/partners/boehringer.png", categories: ["livestock", "pet-consumables"] },
+  { id: "br-2", name: "Zoetis", logo_url: "/images/partners/zoetis.png", categories: ["livestock", "pet-consumables"] },
+  { id: "br-3", name: "MSD Animal Health", logo_url: "/images/partners/msd.png", categories: ["livestock", "pet-consumables"] },
+  { id: "br-4", name: "Elanco", logo_url: "/images/partners/elanco.png", categories: ["livestock", "pet-consumables"] },
+  { id: "br-5", name: "Cargill", logo_url: "/images/partners/cargill.jpg", categories: ["livestock"] },
+  { id: "br-6", name: "Hipra", logo_url: "/images/partners/hipra.jpg", categories: ["livestock", "pet-consumables"] },
+  { id: "br-7", name: "Virbac", logo_url: "/images/partners/virbac.png", categories: ["pet-consumables"] },
+  // ── Equipment principals (Pet Multilines) ──
+  { id: "br-8", name: "Sontu", logo_url: "/images/partners/sontu.png", categories: ["equipment"] },
+  { id: "br-9", name: "Edan", logo_url: "/images/partners/edan.png", categories: ["equipment"] },
+  { id: "br-10", name: "RWD", logo_url: "/images/partners/rwd.jpg", categories: ["equipment"] },
+  { id: "br-11", name: "Browiner", logo_url: "/images/partners/browiner.png", categories: ["equipment"] },
+  { id: "br-12", name: "Aohua", logo_url: "/images/partners/aohua.png", categories: ["equipment"] },
+  { id: "br-13", name: "Bizvet", logo_url: "/images/partners/bizvet.png", categories: ["equipment"] },
+  { id: "br-14", name: "Infinnomed", logo_url: "/images/partners/infinnomed.png", categories: ["equipment"] },
+  { id: "br-15", name: "Manpharma", logo_url: "/images/partners/manpharma.png", categories: ["equipment"] },
+  { id: "br-16", name: "Pretta", logo_url: "/images/partners/pretta.png", categories: ["equipment"] },
+  { id: "br-17", name: "Tootoo", logo_url: "/images/partners/tootoo.png", categories: ["equipment"] },
+  { id: "br-18", name: "Willway", logo_url: "/images/partners/willway.png", categories: ["equipment"] },
 ];
 
 export const seedProducts: Product[] = [
