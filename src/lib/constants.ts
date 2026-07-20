@@ -106,7 +106,6 @@ export const PM_NAV_LINKS = [
   { label: "About Us", href: "/petmultilines/about" },
   { label: "Products", href: "/petmultilines/products" },
   { label: "Services", href: "/petmultilines/services" },
-  { label: "Gallery", href: "/petmultilines/gallery" },
   { label: "News & Events", href: "/petmultilines/news" },
   { label: "Contact / RFQ", href: "/petmultilines/contact" },
 ] as const;

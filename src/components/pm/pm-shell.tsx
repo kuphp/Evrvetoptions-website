@@ -44,18 +44,18 @@ export function PMLogo({
         <Image
           src="/images/pm-logo.png"
           alt="Pet Multilines"
-          width={112}
-          height={112}
+          width={128}
+          height={128}
           priority
-          className="h-11 w-auto md:h-12"
+          className="h-14 w-auto md:h-16"
         />
       </span>
-      <span className="hidden flex-col leading-none sm:flex">
-        <span className="text-[0.6rem] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-          A Division of
+      <span className="flex flex-col leading-none">
+        <span className="text-base font-extrabold tracking-tight md:text-lg">
+          Pet <span className="text-gradient">Multilines</span>
         </span>
-        <span className="mt-0.5 text-[0.7rem] font-extrabold tracking-tight">
-          EVR Vet Options Corp.
+        <span className="mt-1 text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+          A Division of EVR Vet Options Corp.
         </span>
       </span>
     </Link>
@@ -120,7 +120,7 @@ export function PMHeader() {
             : "border-b border-transparent bg-transparent"
         )}
       >
-        <div className="container-page flex h-16 items-center justify-between gap-2 md:h-[4.5rem]">
+        <div className="container-page flex h-[4.75rem] items-center justify-between gap-2 md:h-[5.5rem]">
           <PMLogo />
 
           {/* Desktop nav */}
